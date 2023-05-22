@@ -2,37 +2,36 @@
 
 1. Module content
 
-1)  How to connect to databases in code
-2)  Performing CRUD operations in coode
-3)  Outputting database data
+   1. How to connect to databases in code
+   2. Performing CRUD operations in coode
+   3. Outputting database data
 
 2. 왜 백엔드에서 데이터베이스가 실행될까?
 
-- NOT connect to a database from inside frontend JavaScript code
-- 웹사이트 방문자에게 노출될 뿐만 아니라, 편집도 가능함.
-- database credentioals could be looked up, queries could be edited.
+   - NOT connect to a database from inside frontend JavaScript code
+   - 웹사이트 방문자에게 노출될 뿐만 아니라, 편집도 가능함.
+   - database credentioals could be looked up, queries could be edited.
 
 3. 구축할 내용
 
-- 기본적인 블로그
-- 인증과 권한없이 모든 방문자의 CRUD 작동
+   - 기본적인 블로그
+   - 인증과 권한없이 모든 방문자의 CRUD 작동
 
 4. 진행
 
-1)  Plan & design our database & tables
-2)  Create database & tables
-3)  Add initial data to database tables (via MySQL Workbench)
-4)  Connect to database & interact via NodeJS / Express app
+   1. Plan & design our database & tables
+   2. Create database & tables
+   3. Add initial data to database tables (via MySQL Workbench)
+   4. Connect to database & interact via NodeJS / Express app
 
 5. 데이터베이스 구조 계획 for blog
 
-- posts (id INT , title VARCHAR, summary VARCHAR, body TEXT, date DATETIME, authorsid INT)
-- authors (id INT, name VARCHAR, email VARCHAR)
+   - posts (id INT , title VARCHAR, summary VARCHAR, body TEXT, date DATETIME, authorsid INT)
+   - authors (id INT, name VARCHAR, email VARCHAR)
 
 6. 데이터베이스 초기화
-
-- 데이타 베이스 생성 : '스키마 탭' - 'new schema' - name 'blog'
-- 테이블 생성 : 'new table'
+   - 데이타 베이스 생성 : '스키마 탭' - 'new schema' - name 'blog'
+   - 테이블 생성 : 'new table'
 
 ```sql
 'authors'
@@ -57,17 +56,17 @@ VALUES ('Manuel Lorenz', 'manuel@test.com');
 
 7. 프로젝트 설정
 
-1)  프로젝트 다운로드 - 오픈 폴더 - '터미널' - npm instal - package.json - ejs, express, nodemon
-2)  app.js - path,express, routes, app, view engine, urlencoded, static, error-handling
-3)  public - css files - color, fonts, margin, form, white-space: pre-wrap
-4)  views - errorpages, list, detail(only frame), update
-5)  include - head, header, post-item
+   1. 프로젝트 다운로드 - 오픈 폴더 - '터미널' - npm instal - package.json - ejs, express, nodemon
+   2. app.js - path,express, routes, app, view engine, urlencoded, static, error-handling
+   3. public - css files - color, fonts, margin, form, white-space: pre-wrap
+   4. views - errorpages, list, detail(only frame), update
+   5. include - head, header, post-item
 
 8. 라우트 정의 (데이터베이스 연결) inside NodeJS, express
 
-- express.Router() 섹션 일부 20 복습
-- 라우트 구성 분할 기능함.
-- routes 폴더와 default.js, restaurants.js 생성
+   - express.Router() 섹션 일부 20 복습
+   - 라우트 구성 분할 기능함.
+   - routes 폴더와 default.js, restaurants.js 생성
 
 ````JavaScript
 // defualt.js
@@ -158,7 +157,7 @@ module.exports = router;
 
 10. 데이터베이스 연결은 타사패키지 사용함 (세부사항 설정 생략하기 위해)
 
-- data - database.js 생성.
+    - data - database.js 생성.
 
 'node mysql2' 구글 검색 내용 확인.
 'npm install --save mysql2' 복사, cmd창에서 실행.
@@ -180,7 +179,7 @@ const pool = mysql.createPool({
 module.exports = pool;
 ```
 
-- 이제 'routes'에서 'database' 사용 가능.
+    - 이제 'routes'에서 'database' 사용 가능.
 
 ```JavaScript
  const db = require('../data/database');
@@ -188,7 +187,7 @@ module.exports = pool;
 
 11. 복습, '동적콘텐츠(ejs 템플릿 엔진 추가)',
 
-- 파일 확장자가 언제부터, 왜 빠졌었는지 헷갈림.
+    - 파일 확장자가 언제부터, 왜 빠졌었는지 헷갈림.
 
 ```JavaScript
 // npm install ejs
@@ -289,9 +288,9 @@ app.get("/restaurants", function (res, req) {
 });
 ```
 
-- 쿼리 실행, 쿼리 전송과 실행, 값 반환 시 생기는 딜레이
-- 비동기 promise 설정, mysql2 지원
-  우리가 실행하는 모든 쿼리 메소드가 우리에게 프로미스 산출하는지 확인
+    - 쿼리 실행, 쿼리 전송과 실행, 값 반환 시 생기는 딜레이
+    - 비동기 promise 설정, mysql2 지원
+    우리가 실행하는 모든 쿼리 메소드가 우리에게 프로미스 산출하는지 확인
 
 ```JavaScript
  // database.js
@@ -316,7 +315,7 @@ router.get('/new-post', async function(req,res) {
 
 15. 전달된 인수를 'create-post.ejs'에서 사용
 
-- 'select-option' 드롭다운
+    - 'select-option' 드롭다운
 
 ```html
 //create-post.ejs
@@ -360,7 +359,7 @@ router.post('/posts', function (req, res) {
  // [data[0], data[1], data[2], data[3]]);
 ```
 
-- 'async-await' 적용
+    - 'async-await' 적용
 
 ```JavScript
 router.post('/posts', async function (req, res) {
@@ -390,7 +389,7 @@ route.get('/posts', async function (req, res) {
 });
 ```
 
-- 'posts-list.ejs'
+    - 'posts-list.ejs'
 
 ```HTML
 <h1>All Posts</h1>
@@ -408,7 +407,7 @@ route.get('/posts', async function (req, res) {
  <% } %>
 ```
 
-- 'post-item.ejs'
+    - 'post-item.ejs'
 
 ```HTML
 <article class="post-item">
@@ -424,13 +423,14 @@ route.get('/posts', async function (req, res) {
 ```
 
 18. '웹에서 추가 포스팅'
-    Title: MySQL + Node.js is amazing!
-    Summary: A truly awesome combination of technologies!
-    Post Content:
-    You can easily send SQL commands and queries to your MySQL database when working with Node + MySQL.
-    It's easy and allows you to build real websites!
 
-- '단일 블로그 게시물 가져오기 & 표시' (detail)
+    - Title: MySQL + Node.js is amazing!
+    - Summary: A truly awesome combination of technologies!
+    - Post Content:
+    - You can easily send SQL commands and queries to your MySQL database when working with Node + MySQL.
+    - It's easy and allows you to build real websites!
+
+    - '단일 블로그 게시물 가져오기 & 표시' (detail)
 
 ```HTML
 <!-- post-item.ejs 링크 추가, 다이내믹, 동적URL -->
@@ -533,8 +533,8 @@ router.get("/restaurants", function (req, res) {
 
 20. 가져온 데이터 형식 지정 & 변환 (CSS, pre-wrap)
 
-- HTML 코드는 모든 빈칸과 줄바꿈을 무시, 동적 텍스트도 포함.
-- posts.css 코드 중
+    - HTML 코드는 모든 빈칸과 줄바꿈을 무시, 동적 텍스트도 포함.
+    - posts.css 코드 중
 
 ```CSS
 white-space: pre-wrap;
@@ -542,12 +542,12 @@ white-space: pre-wrap;
 <!-- normal : 공백,줄바꿈 적용 안됨 -->
 ```
 
-- 날짜 형식 변경
-- date: posts[0].date.toISOString() 코드를 통해, posts[0].date의 값을 ISO 형식의 문자열로 변환하여 저장
-- ISO 형식은 날짜와 시간을 표현하는 국제 표준이며, "2020-12-01T00:00:00.000Z"와 같은 형태로 표현. 이 값은 주로 머신 리더블한 날짜 형식으로 사용
+    - 날짜 형식 변경
+        - date: posts[0].date.toISOString() 코드를 통해, posts[0].date의 값을 ISO 형식의 문자열로 변환하여 저장
+        - ISO 형식은 날짜와 시간을 표현하는 국제 표준이며, "2020-12-01T00:00:00.000Z"와 같은 형태로 표현. 이 값은 주로 머신 리더블한 날짜 형식으로 사용
 
-- humanReadableDate: posts[0].date.toLocaleDateString('en-US', {...}) 코드를 통해, posts[0].date의 값을 사람이 읽기 쉬운 형태로 변환하여 저장
-- 주어진 로케일에 맞게 날짜를 포맷팅, 여기서는 'en-US' 로케일을 사용, 추가로 객체를 전달하여 날짜를 어떻게 포맷팅할지를 지정.
+        - humanReadableDate: posts[0].date.toLocaleDateString('en-US', {...}) 코드를 통해, posts[0].date의 값을 사람이 읽기 쉬운 형태로 변환하여 저장
+        - 주어진 로케일에 맞게 날짜를 포맷팅, 여기서는 'en-US' 로케일을 사용, 추가로 객체를 전달하여 날짜를 어떻게 포맷팅할지를 지정.
 
 ```JavaScript
 // blog.js
@@ -578,8 +578,8 @@ router.get('/posts/:id', async function(req,res){
 
 21. 스프레드 연산자(...) 복습
 
-- let newObj = obj;와 let newObj = { ...obj }; 의 차이는 JavaScript에서 객체를 다루는 방식
-- JavaScript에서 { ...obj } 구문은 새로운 객체를 생성하고, obj의 모든 속성을 새로운 객체에 복사
+    - let newObj = obj;와 let newObj = { ...obj }; 의 차이는 JavaScript에서 객체를 다루는 방식
+    - JavaScript에서 { ...obj } 구문은 새로운 객체를 생성하고, obj의 모든 속성을 새로운 객체에 복사
 
 ```JavaScript
 let obj = {
@@ -613,8 +613,8 @@ console.log(obj.name); // 출력: John
 
 22. 스프레드 연산자(...) 다른 활용 복습
 
-- 배열의 복사와 병합
-  스프레드 연산자는 배열의 모든 요소를 새 배열에 복사하거나 두 개 이상의 배열을 하나로 병합하는 데 사용
+    - 배열의 복사와 병합
+      스프레드 연산자는 배열의 모든 요소를 새 배열에 복사하거나 두 개 이상의 배열을 하나로 병합하는 데 사용
 
 ```JavaScript
 let arr1 = [1, 2, 3];
@@ -624,8 +624,8 @@ let arr3 = [4, 5, 6];
 let mergedArr = [...arr1, ...arr3]; // arr1과 arr3의 모든 요소를 병합
 ```
 
-- 함수 인수로 사용
-  스프레드 연산자는 배열의 요소를 함수의 인수로 전달하는 데도 사용
+    - 함수 인수로 사용
+    스프레드 연산자는 배열의 요소를 함수의 인수로 전달하는 데도 사용
 
 ```JavaScript
 function add(a, b, c) {
@@ -636,9 +636,9 @@ let numbers = [1, 2, 3];
 console.log(add(...numbers)); // 출력: 6
 ```
 
-- 나머지 매개변수(Rest Parameters)
-- 프레드 연산자는 함수의 매개변수로 사용될 때, 나머지 매개변수를 정의하는 데 사용
-- 나머지 매개변수는 함수에 전달된 인수들 중에서 나머지를 모두 모아 배열로 만듬
+    - 나머지 매개변수(Rest Parameters)
+    - 프레드 연산자는 함수의 매개변수로 사용될 때, 나머지 매개변수를 정의하는 데 사용
+    - 나머지 매개변수는 함수에 전달된 인수들 중에서 나머지를 모두 모아 배열로 만듬
 
 ```JavaScript
 function logArguments(...args) {
@@ -652,9 +652,9 @@ logArguments('Hello', 'world', '!'); // 출력: Hello, world, !
 
 23. '<time datetime=""> 태그
 
-- datetime은 HTML의 <time> 태그에서 사용되는 속성.
-- 이 속성은 해당 태그가 나타내는 시간 정보를 머신 리더블한 형태로 제공
-- 브라우저나 웹 크롤러, 스크린 리더 등이 이해하고 해석할 수 있는 형식으로 시간 정보를 제공
+    - datetime은 HTML의 <time> 태그에서 사용되는 속성.
+    - 이 속성은 해당 태그가 나타내는 시간 정보를 머신 리더블한 형태로 제공
+    - 브라우저나 웹 크롤러, 스크린 리더 등이 이해하고 해석할 수 있는 형식으로 시간 정보를 제공
 
 ```JavaScript
 <time datetime="2020-12-01">December 1, 2020</time>
@@ -728,8 +728,8 @@ router.post('/posts/:id/delete', async function(req,res){
 
 25. 모듈 요약 (NodeJS & MySQL)
 
-- CRUD(CREATE, READ, UPDATE, DELETE) 작업을 활용한 작은 데모 블로그 구축
-- mysql2 패키지 설치 및 설
+    - CRUD(CREATE, READ, UPDATE, DELETE) 작업을 활용한 작은 데모 블로그 구축
+    - mysql2 패키지 설치 및 설정
 
 ```JavaScript
 const mysql = require("mysql2/promise");
@@ -743,12 +743,12 @@ const pool = mysql.createPool({
 
 module.exports = pool;
 ```
-
 - 'async-wait' 비동기화
 - 쿼리 내 플레이스홀더 '?', db.query(query, [플레이스홀더값])
 - 데이타베이스 테이블 병합 'INNER JOIN' ~ 'ON tableA.id = tableB.id'
 - MySQL 패키지 동적값 주입, 배열안의 배열값을 넣으면 자동으로 개별값으로 분할.
-  ``JavaScript
+
+```JavaScript
   router.post("/posts", async function (req, res) {
   const data = [
   req.body.title,
@@ -756,6 +756,7 @@ module.exports = pool;
   req.body.content,
   req.body.author,
   ];
+
   await db.query(
   "INSERT INTO posts (title,summary,body,author_id) VALUES (?)",
   [data]
@@ -763,7 +764,4 @@ module.exports = pool;
 
 res.redirect("/posts");
 });
-
-```
-
 ```
